@@ -1,4 +1,4 @@
-/* alert('Bienvenido al Convertidor de moneda');
+alert('Bienvenido al Convertidor de moneda');
 alert("Se puede elegir entre: 'dolar', 'dolar blue', 'euro' y 'real'");
 let respuesta = prompt('empezamos?');
 
@@ -40,9 +40,9 @@ while (respuesta == 'si' || respuesta == 'SI') {
     tipoDeCambio();
     respuesta = prompt('deseas continuar?');
 }
-alert('Chau, Hasta pronto'); */
+alert('Chau, Hasta pronto');
 
-/*
+
 let variable = totalCambio;
 
 class Productos{
@@ -65,9 +65,20 @@ listaProductos.push(new Productos('Celular Apple', 'iPhone 14 Pro Max', 837000))
 listaProductos.push(new Productos('Celular Sony', 'Xperia 5 lv', 300000));
 listaProductos.push(new Productos('Celular Xiaomi', 'Redmi Note 9', 154800));
 
+for(const producto of listaProductos) {
+    if (variable < producto.precio) {
+        console.log(`
+        Nombre: ${producto.nombre}
+        Descripción: ${producto.descripcion}
+        Precio: ${producto.precio}
+        `);
+    }
+}
+
+/*
 let container = document.getElementById('container');
 
-for(const producto of listaProductos) {
+ for(const producto of listaProductos) {
     if (variable > producto.precio) {
 
         let ul = document.createElement('ul');
