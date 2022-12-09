@@ -1,0 +1,17 @@
+body {
+    height: 100vh;
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+}
+
+.img_prod {
+    height: 10em;
+    object-fit: contain;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+.icon {
+    width: 1.8em;
+}

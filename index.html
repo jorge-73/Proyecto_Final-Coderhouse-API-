@@ -4,13 +4,170 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilos/bootstrap.min.css">
+    <link rel="stylesheet" href="./estilos/style.css">
     <title>Proyecto</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Jorge Peralta</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Home
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/jorge-73/Proyecto_Final-Coderhouse" target="_blank">Github</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 p-2 mt-4">
+                <div class="card rounded shadow">
+                    <h5 class="card-header text-center text-primary">Convertidor de divisas</h5>
+                    <div class="card-body">
+                        <form>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Tipos de Monedas</label>
+                                <select class="form-select rounded" id="">
+                                    <option selected><img src="img/icons/united-states.png" class="icon">Dolar</option>
+                                    <option value="Dolar Blue">Dolar Blue</option>
+                                    <option value="Euro">Euro</option>
+                                    <option value="Real">Real</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="number" class="form-label">Dinero</label>
+                              <input type="number"
+                                class="form-control rounded" id="number" placeholder="Ingrese la cantidad de dinero a cambiar" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary form-control">Convertir</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card rounded mt-5 shadow">
+                    <h5 class="card-header text-center text-primary">Resultado</h5>
+                    <div class="card-body">
+                        <h5 class="text-center"><img class="icon" src="./img/icons/argentina.png">$10.000</h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-8">
+
+                <h2 class="text-center text-primary">Productos</h2>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                    <div class="col">
+                      <div class="card text-center shadow p-1">
+                        <img src="./img/samsungA22.jpg" class="img_prod" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Celular Samsung</h5>
+                          <p class="card-text">Modelo A22</p>
+                        </div>
+                        <div class="card-footer">
+                            <p>$122000</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="card text-center shadow p-1">
+                        <img src="./img/samsungS21.jpg" class="img_prod" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Celular Samsung</h5>
+                          <p class="card-text">Modelo S21</p>
+                        </div>
+                        <div class="card-footer">
+                            <p>$169999</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="card text-center shadow p-1">
+                        <img src="./img/motorolaG30.jpg" class="img_prod" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Celular Motorola</h5>
+                          <p class="card-text">Modelo G30</p>
+                        </div>
+                        <div class="card-footer">
+                            <p>$102000</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="card text-center shadow p-1">
+                        <img src="./img/lgK20.jpg" class="img_prod" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Celular lg</h5>
+                          <p class="card-text">Modelo K20</p>
+                        </div>
+                        <div class="card-footer">
+                            <p>$72000</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card text-center shadow p-1">
+                          <img src="./img/appleiPhone14ProMax.jpg" class="img_prod" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Celular Apple</h5>
+                            <p class="card-text">iPhone 14 Pro Max</p>
+                          </div>
+                          <div class="card-footer">
+                            <p>$837000</p>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card text-center shadow p-1">
+                          <img src="./img/SonyXperia5.jpg" class="img_prod" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Celular Sony</h5>
+                            <p class="card-text">Xperia 5 lv</p>
+                          </div>
+                          <div class="card-footer">
+                            <p>$300000</p>
+                          </div>
+                        </div>
+                    </div>
+                      
+                </div>
+
+            </div>
+
+        </div>
+      </div>
+
     
-
-
-
+    
+    
+    <footer class="mt-5 d-flex justify-content-around">
+        <h5>Jorge Peralta alumno de <a href="https://www.coderhouse.com" target="_blank">Coderhouse</a></h5>
+        <h5>Copyright 2022</h5>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
