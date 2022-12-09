@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link para colocar iconos -->
+    <script src="https://kit.fontawesome.com/f1e1a05e58.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 5 para diseño y estilos -->
     <link rel="stylesheet" href="./estilos/bootstrap.min.css">
     <link rel="stylesheet" href="./estilos/style.css">
     <title>Proyecto</title>
 </head>
 <body>
+    <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Jorge Peralta</a>
@@ -30,10 +36,13 @@
         </div>
       </nav>
 
+      <!-- Contenedor Principal -->
       <div class="container">
         <div class="row">
 
-            <div class="col-md-4 p-2 mt-4">
+            <section class="col-md-4 p-2 mt-4">
+
+              <!-- Primer Card donde se realiza la conversión de monedas -->
                 <div class="card rounded shadow">
                     <h5 class="card-header text-center text-primary">Convertidor de divisas</h5>
                     <div class="card-body">
@@ -41,16 +50,16 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Tipos de Monedas</label>
-                                <select class="form-select rounded" id="">
-                                    <option selected><img src="img/icons/united-states.png" class="icon">Dolar</option>
-                                    <option value="Dolar Blue">Dolar Blue</option>
-                                    <option value="Euro">Euro</option>
-                                    <option value="Real">Real</option>
+                                <select class="form-select rounded fa" id="">
+                                    <option selected class="fa">&#x24 Dolar</option>
+                                    <option value="Dolar Blue" class="fa">&#x24 Dolar Blue</option>
+                                    <option value="Euro" class="fa">&#xf153 Euro</option>
+                                    <option value="Real" class="fa">&#xe46c Real</option>
                                 </select>
                             </div>
 
                             <div class="mb-3">
-                              <label for="number" class="form-label">Dinero</label>
+                              <label for="number" class="form-label">Monto a convertir</label>
                               <input type="number"
                                 class="form-control rounded" id="number" placeholder="Ingrese la cantidad de dinero a cambiar" required>
                             </div>
@@ -60,6 +69,7 @@
                     </div>
                 </div>
 
+                <!-- Segundo Card donde se muestra el resultado de la conversión -->
                 <div class="card rounded mt-5 shadow">
                     <h5 class="card-header text-center text-primary">Resultado</h5>
                     <div class="card-body">
@@ -67,14 +77,16 @@
                     </div>
                 </div>
 
-            </div>
+            </section>
 
-            <div class="col-md-8">
+            <!-- Sector donde se muestran los productos como un estilo de propagando en base a el resultado de la conversión -->
+            <section class="col-md-8">
 
                 <h2 class="text-center text-primary">Productos</h2>
 
                 <div class="row row-cols-1 row-cols-md-3 g-4">
 
+                  <!-- Los productos se tendran que listar mediante un bucle y los datos de cada objeto en sus respectivas secciones -->
                     <div class="col">
                       <div class="card text-center shadow p-1">
                         <img src="./img/samsungA22.jpg" class="img_prod" alt="...">
@@ -155,14 +167,11 @@
                       
                 </div>
 
-            </div>
+            </section>
 
         </div>
       </div>
 
-    
-    
-    
     <footer class="mt-5 d-flex justify-content-around">
         <h5>Jorge Peralta alumno de <a href="https://www.coderhouse.com" target="_blank">Coderhouse</a></h5>
         <h5>Copyright 2022</h5>
