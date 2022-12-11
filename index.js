@@ -67,7 +67,7 @@ listaProductos.push(new Productos('Celular Xiaomi', 'Redmi Note 9', 154800));
 
 // bucle para mostrar los productos por ahora en consola. Mientras que el valor retornado alcance para comprar uno de los productos
 for(const producto of listaProductos) {
-    if (variable < producto.precio) {
+    if (variable > producto.precio) {
         console.log(`
         Nombre: ${producto.nombre}
         Descripción: ${producto.descripcion}
