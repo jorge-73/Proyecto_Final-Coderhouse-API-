@@ -1,4 +1,4 @@
-alert('Bienvenido al Convertidor de moneda');
+/* alert('Bienvenido al Convertidor de moneda');
 alert("Se puede elegir entre: 'dolar', 'dolar blue', 'euro' y 'real'");
 let respuesta = prompt('empezamos?');
 
@@ -41,54 +41,86 @@ while (respuesta == 'si' || respuesta == 'SI') {
 alert('Chau, Hasta pronto');
 
 // Se guarda en una variable el resultado retornado de la función conversora
-let variable = totalCambio;
+let variable = totalCambio; */
 
 // Creación del constructor para los productos de ejemplo que se mostraran como propaganda
 class Productos{
-    constructor(nombre, descripcion, precio){
+    constructor(nombre, descripcion, precio, img){
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.imagen = img;
     }
 }
 
 // Lista de los objetos/productos creados mientras se lo va guardando en un array
 const listaProductos = [];
-listaProductos.push(new Productos('Celular Samsung', 'Modelo A22', 122000));
-listaProductos.push(new Productos('Celular lg', 'Modelo K20', 72000));
-listaProductos.push(new Productos('Celular Motorola', 'Modelo G30', 102000));
-listaProductos.push(new Productos('Celular Samsung', 'Modelo S21', 169999));
-listaProductos.push(new Productos('Celular Motorola', 'Modelo Edge 30', 119999));
-listaProductos.push(new Productos('Celular Samsung', 'Modelo S20', 159999));
-listaProductos.push(new Productos('Celular Apple', 'iPhone SE', 317499));
-listaProductos.push(new Productos('Celular Apple', 'iPhone 14 Pro Max', 837000));
-listaProductos.push(new Productos('Celular Sony', 'Xperia 5 lv', 300000));
-listaProductos.push(new Productos('Celular Xiaomi', 'Redmi Note 9', 154800));
+listaProductos.push(new Productos('Celular Samsung', 'Modelo A22', 122000, "./img/samsungA22.jpg"));
+listaProductos.push(new Productos('Celular lg', 'Modelo K20', 72000, "./img/lgK20.jpg"));
+listaProductos.push(new Productos('Celular Motorola', 'Modelo G30', 102000, "./img/motorolaG30.jpg"));
+listaProductos.push(new Productos('Celular Samsung', 'Modelo S21', 169999, "./img/samsungS21.jpg"));
+listaProductos.push(new Productos('Celular Motorola', 'Modelo Edge 30', 119999, "./img/motorolaEdge30.jpg"));
+listaProductos.push(new Productos('Celular Samsung', 'Modelo S20', 159999, "./img/samsungS20.jpg"));
+listaProductos.push(new Productos('Celular Apple', 'iPhone SE', 317499, "./img/appleiPhoneSE.jpg"));
+listaProductos.push(new Productos('Celular Apple', 'iPhone 14 Pro Max', 837000, "./img/appleiPhone14ProMax.jpg"));
+listaProductos.push(new Productos('Celular Sony', 'Xperia 5 lv', 300000, "./img/SonyXperia5.jpg"));
+listaProductos.push(new Productos('Celular Xiaomi', 'Redmi Note 9', 154800, "./img/xiaomiRedmiNote9.jpg"));
 
-// bucle para mostrar los productos por ahora en consola. Mientras que el valor retornado alcance para comprar uno de los productos
-for(const producto of listaProductos) {
-    if (variable > producto.precio) {
-        console.log(`
-        Nombre: ${producto.nombre}
-        Descripción: ${producto.descripcion}
-        Precio: ${producto.precio}
-        `);
-    }
-}
+let container = document.getElementById('productos');
+let bienvenida = document.getElementById('bienvenida');
 
-/*
-let container = document.getElementById('container');
 
- for(const producto of listaProductos) {
-    if (variable > producto.precio) {
+let form = document.getElementById('form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let formulario = e.target.children;
+    let divisas = formulario[0].children[1].value;
+     let resNumber = formulario[1].children[1].value;
 
-        let ul = document.createElement('ul');
-        ul.innerHTML = `
-        <li>Nombre: ${producto.nombre}</li>
-        <li>Descripción: ${producto.descripcion}</li>
-        <li>Precio: ${producto.precio}</li>
-        `;
+     switch (divisas) {
+        case 'dolar':
+            totalCambio = Math.fround(resNumber * 315);
+        break;
+        case 'dolar blue':
+            totalCambio = Math.fround(resNumber * 312);
+        break;
+        case 'euro':
+            totalCambio = Math.fround(resNumber * 283.50);
+        break;
+        case 'real':
+            totalCambio = Math.fround(resNumber * 62.60);
+        break;
+     }
+
+     if (totalCambio) {
+        result = document.getElementById('result');
+        result.innerHTML = `
+            AR$${totalCambio}`;
         
-    container.append(ul);
-    }
-} */
+            // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
+            for(const producto of listaProductos) {
+                if (totalCambio > producto.precio) {
+            
+                    bienvenida.remove();
+            
+                    let card = document.createElement('div')
+            
+                    card.innerHTML = `
+                        <div class="card text-center shadow p-1" id="card_prod">
+                            <img src=${producto.imagen} class="img_prod" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${producto.nombre}</h5>
+                                <p class="card-text">${producto.descripcion}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p>$${producto.precio}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                 container.append(card);
+                }
+            }
+     }
+});
+

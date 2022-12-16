@@ -5,9 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Link para colocar iconos -->
-    <script src="https://kit.fontawesome.com/f1e1a05e58.js" crossorigin="anonymous"></script>
-
     <!-- Bootstrap 5 para diseño y estilos -->
     <link rel="stylesheet" href="./estilos/bootstrap.min.css">
     <link rel="stylesheet" href="./estilos/style.css">
@@ -46,15 +43,15 @@
                 <div class="card rounded shadow">
                     <h5 class="card-header text-center text-primary">Convertidor de divisas</h5>
                     <div class="card-body">
-                        <form>
+                        <form id="form">
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Tipos de Monedas</label>
-                                <select class="form-select rounded fa" id="">
-                                    <option selected class="fa">&#x24 Dolar</option>
-                                    <option value="Dolar Blue" class="fa">&#x24 Dolar Blue</option>
-                                    <option value="Euro" class="fa">&#xf153 Euro</option>
-                                    <option value="Real" class="fa">&#xe46c Real</option>
+                                <select class="form-select rounded fa" id="divisas">
+                                    <option value="dolar" selected>$ Dolar</option>
+                                    <option value="dolar blue">$ Dolar Blue</option>
+                                    <option value="euro">€ Euro</option>
+                                    <option value="real">R$ Real</option>
                                 </select>
                             </div>
 
@@ -64,7 +61,7 @@
                                 class="form-control rounded" id="number" placeholder="Ingrese la cantidad de dinero a cambiar" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary form-control">Convertir</button>
+                            <button type="submit" class="btn btn-primary form-control" value="convertir">Convertir</button>
                         </form>
                     </div>
                 </div>
@@ -73,7 +70,7 @@
                 <div class="card rounded mt-5 shadow">
                     <h5 class="card-header text-center text-primary">Resultado</h5>
                     <div class="card-body">
-                        <h5 class="text-center">AR$10.000</h5>
+                        <h5 class="text-center" id="result">AR$ Resultado</h5>
                     </div>
                 </div>
 
@@ -84,95 +81,26 @@
 
                 <h2 class="text-center text-primary">Productos</h2>
 
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="productos">
 
                   <!-- Los productos se tendran que listar mediante un bucle y los datos de cada objeto en sus respectivas secciones -->
-                    <div class="col">
-                      <div class="card text-center shadow p-1">
-                        <img src="./img/samsungA22.jpg" class="img_prod" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Celular Samsung</h5>
-                          <p class="card-text">Modelo A22</p>
-                        </div>
-                        <div class="card-footer">
-                            <p>$122000</p>
-                        </div>
+                   
+                    <div class="col-md-6 d-block mx-auto mt-5" id="bienvenida">
+                      <div class="h-100 p-5 text-white bg-primary border rounded-3 text-center">
+                        <h2>Bienvenid@s</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique reprehenderit necessitatibus quia, nam repellendus nisi veniam aut ullam temporibus, soluta quis doloribus quam excepturi ipsam. In, sequi? Minus, perspiciatis quod!</p>
+                        <button class="btn btn-secondary rounded" type="button">Ver Más</button>
                       </div>
-                    </div>
-
-                    <div class="col">
-                      <div class="card text-center shadow p-1">
-                        <img src="./img/samsungS21.jpg" class="img_prod" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Celular Samsung</h5>
-                          <p class="card-text">Modelo S21</p>
-                        </div>
-                        <div class="card-footer">
-                            <p>$169999</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col">
-                      <div class="card text-center shadow p-1">
-                        <img src="./img/motorolaG30.jpg" class="img_prod" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Celular Motorola</h5>
-                          <p class="card-text">Modelo G30</p>
-                        </div>
-                        <div class="card-footer">
-                            <p>$102000</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col">
-                      <div class="card text-center shadow p-1">
-                        <img src="./img/lgK20.jpg" class="img_prod" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Celular lg</h5>
-                          <p class="card-text">Modelo K20</p>
-                        </div>
-                        <div class="card-footer">
-                            <p>$72000</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card text-center shadow p-1">
-                          <img src="./img/appleiPhone14ProMax.jpg" class="img_prod" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Celular Apple</h5>
-                            <p class="card-text">iPhone 14 Pro Max</p>
-                          </div>
-                          <div class="card-footer">
-                            <p>$837000</p>
-                          </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card text-center shadow p-1">
-                          <img src="./img/SonyXperia5.jpg" class="img_prod" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Celular Sony</h5>
-                            <p class="card-text">Xperia 5 lv</p>
-                          </div>
-                          <div class="card-footer">
-                            <p>$300000</p>
-                          </div>
-                        </div>
                     </div>
                       
                 </div>
-
+                
             </section>
 
         </div>
       </div>
 
-    <footer class="mt-5 d-flex justify-content-around">
+    <footer class="mt-5 d-flex justify-content-around align-items-end">
         <h5>Jorge Peralta alumno de <a href="https://www.coderhouse.com" target="_blank">Coderhouse</a></h5>
         <h5>Copyright 2022</h5>
     </footer>
