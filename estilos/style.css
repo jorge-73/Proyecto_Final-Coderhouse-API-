@@ -9,6 +9,10 @@ body {
     object-fit: contain;
 }
 
+.img-carrito{
+    width: 20px;
+}
+
 option {
     font-weight: bold;
     font-size: 16px;

@@ -67,17 +67,15 @@ listaProductos.push(new Productos('Celular Sony', 'Xperia 5 lv', 300000, "./img/
 listaProductos.push(new Productos('Celular Xiaomi', 'Redmi Note 9', 154800, "./img/xiaomiRedmiNote9.jpg"));
 
 let container = document.getElementById('productos');
-let bienvenida = document.getElementById('bienvenida');
+//let bienvenida = document.getElementById('bienvenida');
 
-
-let form = document.getElementById('form');
-form.addEventListener('submit', (e) => {
+const funcionImprime = (e) => {
     e.preventDefault();
     let formulario = e.target.children;
     let divisas = formulario[0].children[1].value;
-     let resNumber = formulario[1].children[1].value;
+    let resNumber = formulario[1].children[1].value;
 
-     switch (divisas) {
+    switch (divisas) {
         case 'dolar':
             totalCambio = Math.fround(resNumber * 315);
         break;
@@ -90,37 +88,74 @@ form.addEventListener('submit', (e) => {
         case 'real':
             totalCambio = Math.fround(resNumber * 62.60);
         break;
-     }
+    }
 
-     if (totalCambio) {
+    if (totalCambio) {
         result = document.getElementById('result');
-        result.innerHTML = `
-            AR$${totalCambio}`;
+        result.innerHTML = `AR$${totalCambio}`; }
+
+    if (document.getElementById('bienvenida')) {
+
+        bienvenida = document.getElementById('bienvenida');
+        // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
+        for(const producto of listaProductos) {
+            if (totalCambio > producto.precio) {
+
+                bienvenida.remove();
+
+                let card = document.createElement('div');
         
-            // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
-            for(const producto of listaProductos) {
-                if (totalCambio > producto.precio) {
-            
-                    bienvenida.remove();
-            
-                    let card = document.createElement('div')
-            
-                    card.innerHTML = `
-                        <div class="card text-center shadow p-1" id="card_prod">
-                            <img src=${producto.imagen} class="img_prod" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">${producto.nombre}</h5>
-                                <p class="card-text">${producto.descripcion}</p>
-                            </div>
-                            <div class="card-footer">
-                                <p>$${producto.precio}</p>
-                            </div>
+                card.innerHTML = `
+                    <div class="card text-center shadow p-1" id="card_prod">
+                        <img src=${producto.imagen} class="img_prod" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${producto.nombre}</h5>
+                            <h6 class="card-text">${producto.descripcion}</h6>
                         </div>
-                    `;
-                    
-                 container.append(card);
-                }
+                        <div class="card-footer d-flex justify-content-evenly">
+                            <h6 class='mt-1'>$${producto.precio}</h6>
+                            <a href="#" class="btn btn-secondary rounded"><img src="./img/carrito-de-compras.png" class="img-carrito" alt=""></a>
+                        </div>
+                    </div>`;
+            
+            container.append(card);
             }
-     }
-});
+        }
+
+    }else {
+
+        let idCard = document.querySelectorAll("#card_prod");
+
+        idCard.forEach(carta => {
+            carta.parentElement.remove();
+        });
+
+        // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
+    for(const producto of listaProductos) {
+        if (totalCambio > producto.precio) {
+
+            let card = document.createElement('div');
+    
+            card.innerHTML = `
+                <div class="card text-center shadow p-1" id="card_prod">
+                    <img src=${producto.imagen} class="img_prod" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${producto.nombre}</h5>
+                        <p class="card-text">${producto.descripcion}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>$${producto.precio}</p>
+                        <a href="#" class="btn btn-secondary rounded"><img src="./img/carrito-de-compras.png" class="img-carrito" alt=""></a>
+                    </div>
+                </div>`;
+        
+        container.append(card);
+        }
+        
+    }
+    }
+};
+
+let form = document.getElementById('form');
+form.addEventListener('submit', funcionImprime);
 
