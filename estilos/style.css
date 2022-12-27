@@ -1,6 +1,8 @@
-
 body {
-    height: 100%;
+    min-height: 100vh;
+}
+
+#body{
     background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 }
 
@@ -10,7 +12,7 @@ body {
 }
 
 .img-carrito{
-    width: 20px;
+    width: 30px;
 }
 
 option {
@@ -18,12 +20,21 @@ option {
     font-size: 16px;
 }
 
-#card_prod {
+.card_prod {
     transition: all 2s;
 }
 
-#card_prod:hover {
+.card_prod:hover {
     transform: scale(1.1);
+}
+
+.img-modal{
+    height: 2em;
+    object-fit: contain;
+}
+
+.transition{
+    transition: all;
 }
 
 footer a {
