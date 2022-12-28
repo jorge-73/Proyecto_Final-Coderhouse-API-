@@ -60,10 +60,8 @@ const funcionImprime = (e) => {
     }
 
     if (document.getElementById('bienvenida')) {
-
         bienvenida = document.getElementById('bienvenida');
         // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
-        
         for(const producto of listaProductos) {
             if (totalCambio > producto.precio) {
                 bienvenida.remove();
@@ -127,9 +125,9 @@ const agregarAlCarrito = ()=>{
 
                 let carProducto = {
                     carImg: carro.offsetParent.children[0].src,
-                carNombre: carro.offsetParent.children[1].children[0].innerText,
-                carDescripcion: carro.offsetParent.children[1].children[1].innerText,
-                carPrecio: carro.offsetParent.children[2].children[0].innerText };
+                    carNombre: carro.offsetParent.children[1].children[0].innerText,
+                    carDescripcion: carro.offsetParent.children[1].children[1].innerText,
+                    carPrecio: carro.offsetParent.children[2].children[0].innerText };
 
                 let productosStorage = JSON.parse(localStorage.getItem("productosStorage"));
 
@@ -139,12 +137,12 @@ const agregarAlCarrito = ()=>{
 
                 localStorage.setItem("productosStorage", JSON.stringify(nuevosProductos));
 
+                // mensaje en caso de que se cargue los items al carrito
                 alerta.innerHTML = `
                     <div class="alert alert-success alert-dismissible fade show mt-5 rounded-3" role="alert">
                     <h5>Agregado al Carrito correctamente.!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>`;
-
                 setTimeout(() => {
                     alerta.innerHTML= "";
                 }, 3000);
@@ -153,6 +151,7 @@ const agregarAlCarrito = ()=>{
     }
 }
 
+// Boton para eliminar todos los elementos del carrito/localStorage
 vaciarCarrito.addEventListener('click', ()=>{
     if (JSON.parse(localStorage.getItem("productosStorage"))) {
         localStorage.clear();
@@ -161,7 +160,6 @@ vaciarCarrito.addEventListener('click', ()=>{
 
 // MODAL
 const myModal = new bootstrap.Modal(document.getElementById('modalId'));
-
     if (localStorage.hasOwnProperty("productosStorage")) {
         let productStorage = JSON.parse(localStorage.getItem("productosStorage"));
         let mostrarCarrito = () => {
@@ -172,13 +170,30 @@ const myModal = new bootstrap.Modal(document.getElementById('modalId'));
                         <td><h5>${prodST.carDescripcion}</h5></td>
                         <td><img src="${prodST.carImg}" alt="" class="img-modal"></td>
                         <td><h5>${prodST.carPrecio}</h5></td>
-                        <td><button class="btn btn-danger rounded-4"><img src="./img/bote-de-basura.png" class="img-modal"></button></td>`;
+                        <td><button class="btn btn-danger rounded-4 btnDelete"><img src="./img/bote-de-basura.png" class="img-modal"></button></td>`;
             bodyModal.append(trModal);
             };
         }
         productStorage ? mostrarCarrito() : bodyModal.append(`<H5>Carrito Vacío</H5>`);
     }
-
+    // Imprimiendo cantidad de items del Carrito
     if (JSON.parse(localStorage.getItem("productosStorage"))) {
         numeroCarrito.textContent = (JSON.parse(localStorage.getItem("productosStorage"))).length;   
     }
+
+    // Borrando un unico item del Carrito
+    if (document.getElementsByClassName('btnDelete')) {
+        let btnDelete = document.getElementsByClassName('btnDelete');
+        btnDelete = Array.from(btnDelete);
+        btnDelete.forEach((btn)=>{
+            btn.addEventListener('click', ()=>{
+                let del = btn.parentElement.parentElement.children[1].innerText;
+                let rowDelete = JSON.parse(localStorage.getItem("productosStorage"));
+                let borrado = rowDelete.find(dele=> dele.carDescripcion === del);
+                newRow = rowDelete.filter(deleteStorage => deleteStorage !== borrado);
+                localStorage.setItem("productosStorage", JSON.stringify(newRow));
+            });
+        })
+    }
+
+   
