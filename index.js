@@ -4,6 +4,8 @@ let vaciarCarrito = document.getElementById('vaciarCarrito');
 let bodyModal = document.getElementById('modalBody');
 let btnModal = document.getElementById('btnMostrar');
 let form = document.getElementById('form');
+let modalAlert = document.getElementById('modalAlert');
+let precioTotal = document.getElementById('precioTotal');
 
 let productosStorage;
 
@@ -74,7 +76,7 @@ const funcionImprime = (e) => {
                             <h6 class="card-text">${producto.descripcion}</h6>
                         </div>
                         <div class="card-footer d-flex justify-content-evenly">
-                            <h5 class='mt-1'>$${producto.precio}</h5>
+                            <h5 class='mt-1'>$<span id="precioProd">${producto.precio}</span></h5>
                             <button class="btn btn-primary rounded carrito"><img src="./img/carrito-de-compras.png" class="img-carrito" alt="carrito"></button>
                         </div>
                     </div>`;
@@ -100,7 +102,7 @@ const funcionImprime = (e) => {
                                 <h6 class="card-text">${producto.descripcion}</h6>
                             </div>
                             <div class="card-footer d-flex justify-content-evenly">
-                                <h5 class='mt-1'>$${producto.precio}</h5>
+                                <h5 class='mt-1'>$<span id="precioProd">${producto.precio}</span></h5>
                                 <button class="btn btn-primary rounded carrito"><img src="./img/carrito-de-compras.png" class="img-carrito" alt="carrito"></button>
                             </div>
                         </div>`;
@@ -127,8 +129,8 @@ const agregarAlCarrito = ()=>{
                     carImg: carro.offsetParent.children[0].src,
                     carNombre: carro.offsetParent.children[1].children[0].innerText,
                     carDescripcion: carro.offsetParent.children[1].children[1].innerText,
-                    carPrecio: carro.offsetParent.children[2].children[0].innerText };
-
+                    carPrecio: carro.offsetParent.children[2].children[0].children[0].innerText };
+                    console.log(carProducto.carPrecio);
                 let productosStorage = JSON.parse(localStorage.getItem("productosStorage"));
 
                 productosStorage ? nuevosProductos = productosStorage : nuevosProductos = [];
@@ -155,11 +157,26 @@ const agregarAlCarrito = ()=>{
 vaciarCarrito.addEventListener('click', ()=>{
     if (JSON.parse(localStorage.getItem("productosStorage"))) {
         localStorage.clear();
+
+        Swal.fire(
+            'Exito!',
+            'Carrito vaciado Correctamente!',
+            'success'
+          )
+        
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Ingrese productos al carrito!'
+          })
     }
 })
 
-// MODAL
+// Modal Bootstrap
 const myModal = new bootstrap.Modal(document.getElementById('modalId'));
+
+    // Imprimiendo en una tabla dentro del modal los productos que se agregan al localStorage
     if (localStorage.hasOwnProperty("productosStorage")) {
         let productStorage = JSON.parse(localStorage.getItem("productosStorage"));
         let mostrarCarrito = () => {
@@ -178,7 +195,7 @@ const myModal = new bootstrap.Modal(document.getElementById('modalId'));
     }
     // Imprimiendo cantidad de items del Carrito
     if (JSON.parse(localStorage.getItem("productosStorage"))) {
-        numeroCarrito.textContent = (JSON.parse(localStorage.getItem("productosStorage"))).length;   
+        numeroCarrito.textContent = (JSON.parse(localStorage.getItem("productosStorage"))).length;
     }
 
     // Borrando un unico item del Carrito
@@ -192,8 +209,30 @@ const myModal = new bootstrap.Modal(document.getElementById('modalId'));
                 let borrado = rowDelete.find(dele=> dele.carDescripcion === del);
                 newRow = rowDelete.filter(deleteStorage => deleteStorage !== borrado);
                 localStorage.setItem("productosStorage", JSON.stringify(newRow));
+
+                // mensaje en caso de que se elimine un item del carrito
+                modalAlert.innerHTML = `
+                    <div class="alert alert-danger alert-dismissible fade show mt-5 rounded-3" role="alert">
+                    <h5>Producto Eliminado.!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>`;
+                setTimeout(() => {
+                    modalAlert.innerHTML= "";
+                }, 3000);
             });
         })
     }
 
+    // Sumando todos los precios de los productos
+    console.log(precioTotal.innerText);
+    let rowPrecio = JSON.parse(localStorage.getItem("productosStorage"));
+    let bm = bodyModal.children;
+    bm = Array.from(bm);
+    rowPrecio = [];
+    bm.forEach((row)=>{
+        rowPrecio.push(parseInt(row.children[3].children[0].innerText));
+        let total = rowPrecio.reduce((a,b) => a + b, 0);
+        precioTotal.innerText = total;
+        
+    })
    
