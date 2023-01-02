@@ -32,6 +32,7 @@ let form = document.getElementById('form');
 let modalAlert = document.getElementById('modalAlert');
 let precioTotal = document.getElementById('precioTotal');
 let alerta = document.getElementById('sectionAlert');
+let comprarProductos = document.getElementById('comprarProductos');
 
 document.addEventListener('DOMContentLoaded', ()=> { 
     carritoStorage = JSON.parse(localStorage.getItem("carritoStorage")) || [];
@@ -225,6 +226,21 @@ vaciarCarrito.addEventListener('click', () => {
             title: 'Error...',
             text: 'Ingrese productos al carrito!'
         })
+    }
+    imprimirCarrito();
+})
+
+// Boton para comprar los productos que se encuentran en el carrito
+comprarProductos.addEventListener('click', () => {
+    if (JSON.parse(localStorage.getItem('carritoStorage')).length > 0) {
+        carritoStorage.length = [];
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Muchas Gracias por su compra',
+            showConfirmButton: false,
+            timer: 1500
+          });
     }
     imprimirCarrito();
 })
