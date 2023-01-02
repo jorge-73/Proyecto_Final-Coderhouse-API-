@@ -29,6 +29,11 @@ option {
 }
 
 .img-modal{
+    height: 3em;
+    object-fit: contain;
+}
+
+.img-modal-delete{
     height: 2em;
     object-fit: contain;
 }
