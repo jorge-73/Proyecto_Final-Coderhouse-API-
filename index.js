@@ -48,16 +48,16 @@ const funcionImprime = (e) => {
     
     switch (divisas) {
         case 'dolar':
-            totalCambio = Math.fround(resNumber * 315);
+            totalCambio = Math.fround(resNumber * 313.50);
         break;
         case 'dolar blue':
-            totalCambio = Math.fround(resNumber * 312);
+            totalCambio = Math.fround(resNumber * 322.58);
         break;
         case 'euro':
-            totalCambio = Math.fround(resNumber * 283.50);
+            totalCambio = Math.fround(resNumber * 330);
         break;
         case 'real':
-            totalCambio = Math.fround(resNumber * 62.60);
+            totalCambio = Math.fround(resNumber * 74.25);
         break;
     }
     
@@ -98,16 +98,16 @@ function ImprimirPantallaConProductos() {
          })
          imprimirCarrito();
      }else {
-        let idCard = document.querySelectorAll(".card_prod");
+        /* let idCard = document.querySelectorAll(".card_prod");
         idCard.forEach(carta => {
-        carta.parentElement.remove(); });
+        carta.parentElement.remove(); }); */
         // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
         listaProductos.forEach((producto)=>{
             const {id, nombre, descripcion, precio, imagen} = producto;
             if (totalCambio > precio) {
                  let card = document.createElement('div');
                          card.innerHTML += `
-                             <div class="card text-center shadow p-1 card_prod">
+                             <div class="card text-center shadow p-1 card_prod" data-aos="fade-up-left">
                                  <img src=${imagen} class="img_prod" alt="...">
                                  <div class="card-body">
                                      <h5 class="card-title">${nombre}</h5>
@@ -141,16 +141,19 @@ function agregarAlCarrito(id){
         item.cantidad = 1;
         carritoStorage.push(item);
     }
-
-    // mensaje en caso de que se cargue los items al carrito
-    alerta.innerHTML = `
-    <div class="alert alert-success alert-dismissible fade show mt-5 rounded-3" role="alert">
-    <h5>Agregado al Carrito correctamente.!</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>`;
-    setTimeout(() => {
-        alerta.innerHTML= "";
-    }, 3000);
+    Toastify({
+        text: "Agregado al Carrito correctamente.!",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#8721E5",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
 
     imprimirCarrito();
 }
@@ -203,6 +206,20 @@ function eliminarProducto(id) {
             carritoStorage = carritoStorage.filter((prod) => prod.id !== prodID);
         }
     }
+    Toastify({
+        text: "Producto Eliminado.!",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#8721E5",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+
     imprimirCarrito();
 }
 

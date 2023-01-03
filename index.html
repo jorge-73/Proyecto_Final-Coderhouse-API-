@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap 5 para diseño y estilos -->
+    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="./estilos/bootstrap.min.css">
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <link rel="stylesheet" href="./estilos/style.css">
     <title>Proyecto</title>
 </head>
@@ -18,18 +20,14 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarC" aria-controls="navbarC" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarC">
+          <div class="collapse navbar-collapse id="navbarC">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="./index.html"><h5>Home</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/jorge-73/Proyecto_Final-Coderhouse" target="_blank"><h5>Github</h5></a>
+                <button type="button" class="btn btn-outline-light btn-lg border-primary rounded-3" data-bs-toggle="modal" data-bs-target="#modalId" id="btnMostrar"><img src="./img/carrito-de-compras.png" class="img-carrito" alt="carrito"><sup id="numeroCarrito">0</sup></button>
               </li>
             </ul>
-            <button type="button" class="btn btn-outline-light btn-lg border-primary rounded-3" data-bs-toggle="modal" data-bs-target="#modalId" id="btnMostrar"><img src="./img/carrito-de-compras.png" class="img-carrito" alt="carrito"><span id="numeroCarrito">0</span></button>
-          </div>
         </div>
+          </div>
       </nav>
 
       <!-- Contenedor Principal -->
@@ -135,13 +133,19 @@
         </div>
       </div>
       
-    <footer class="mt-5 d-flex justify-content-around align-items-end">
-        <h5>Jorge Peralta alumno de <a href="https://www.coderhouse.com" target="_blank">Coderhouse</a></h5>
+    <footer class="mt-5 d-flex justify-content-evenly align-items-start">
+        <h4>Jorge Peralta alumno de <a href="https://www.coderhouse.com" target="_blank">Coderhouse</a></h4>
+        <div class="contenedor-redes">
+          <a href="https://github.com/jorge-73" target="_blank"><img src="./img/github.png" alt="github" class="img-redes"></a>
+          <a href="https://www.linkedin.com/in/jorge-peralta-ap/" target="_blank"><img src="./img/linkedin.png" alt="linkedin" class="img-redes"></a>
+        </div>
     </footer>
-    <script src="index.js"></script>
     <!-- Bootstrap5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- SweetAlert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
