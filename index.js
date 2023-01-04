@@ -98,9 +98,9 @@ function ImprimirPantallaConProductos() {
          })
          imprimirCarrito();
      }else {
-        /* let idCard = document.querySelectorAll(".card_prod");
+        let idCard = document.querySelectorAll(".card_prod");
         idCard.forEach(carta => {
-        carta.parentElement.remove(); }); */
+        carta.parentElement.remove(); });
         // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
         listaProductos.forEach((producto)=>{
             const {id, nombre, descripcion, precio, imagen} = producto;
@@ -231,12 +231,26 @@ function guardarStorage(){
 // Boton para eliminar todos los elementos del carrito/localStorage
 vaciarCarrito.addEventListener('click', () => {
     if (carritoStorage.length != 0) {
-        carritoStorage.length = [];
-        Swal.fire(
-            'Exito!',
-            'Carrito vaciado Correctamente!',
-            'success'
-            )
+        Swal.fire({
+            title: 'Seguro desea Vaciar el carrito?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, seguro',
+            cancelButtonText: 'No, Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+    
+           carritoStorage.length = [];
+    
+            Swal.fire(
+                'Exito!',
+                'Carrito vaciado Correctamente!',
+                'success'
+            )}
+            imprimirCarrito();
+        })
     }else{
         Swal.fire({
             icon: 'error',
@@ -244,8 +258,9 @@ vaciarCarrito.addEventListener('click', () => {
             text: 'Ingrese productos al carrito!'
         })
     }
-    imprimirCarrito();
 })
+
+    
 
 // Boton para comprar los productos que se encuentran en el carrito
 comprarProductos.addEventListener('click', () => {
