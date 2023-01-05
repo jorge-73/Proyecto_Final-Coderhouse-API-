@@ -11,16 +11,25 @@ class Productos{
 }
 // Lista de los objetos/productos creados mientras se lo va guardando en un array
 const listaProductos = [];
-listaProductos.push(new Productos(1, 'Celular Samsung', 'Modelo A22', 122000, 1, "img/samsungA22.jpg"));
-listaProductos.push(new Productos(2, 'Celular lg', 'Modelo K20', 72000, 1, "img/lgK20.jpg"));
-listaProductos.push(new Productos(3, 'Celular Motorola', 'Modelo G30', 102000, 1, "img/motorolaG30.jpg"));
-listaProductos.push(new Productos(4, 'Celular Samsung', 'Modelo S21', 169999, 1, "img/samsungS21.jpg"));
-listaProductos.push(new Productos(5, 'Celular Motorola', 'Modelo Edge 30', 119999, 1, "img/motorolaEdge30.jpg"));
-listaProductos.push(new Productos(6, 'Celular Samsung', 'Modelo S20', 159999, 1, "img/samsungS20.jpg"));
-listaProductos.push(new Productos(7, 'Celular Apple', 'iPhone SE', 317499, 1, "img/appleiPhoneSE.jpg"));
-listaProductos.push(new Productos(8, 'Celular Apple', 'iPhone 14 Pro Max', 837000, 1, "img/appleiPhone14ProMax.jpg"));
-listaProductos.push(new Productos(9, 'Celular Sony', 'Xperia 5 lv', 300000, 1, "img/SonyXperia5.jpg"));
-listaProductos.push(new Productos(10, 'Celular Xiaomi', 'Redmi Note 9', 154800, 1, "img/xiaomiRedmiNote9.jpg"));
+
+// Celulares
+listaProductos.push(new Productos(1, 'Celular Samsung', 'Modelo A22', 122000, 1, "img/celulares/samsungA22.jpg"));
+listaProductos.push(new Productos(2, 'Celular lg', 'Modelo K20', 72000, 1, "img/celulares/lgK20.jpg"));
+listaProductos.push(new Productos(3, 'Celular Motorola', 'Modelo G30', 102000, 1, "img/celulares/motorolaG30.jpg"));
+listaProductos.push(new Productos(4, 'Celular Samsung', 'Modelo S21', 169999, 1, "img/celulares/samsungS21.jpg"));
+listaProductos.push(new Productos(5, 'Celular Motorola', 'Modelo Edge 30', 119999, 1, "img/celulares/motorolaEdge30.jpg"));
+listaProductos.push(new Productos(6, 'Celular Samsung', 'Modelo S20', 159999, 1, "img/celulares/samsungS20.jpg"));
+listaProductos.push(new Productos(7, 'Celular Apple', 'iPhone SE', 317499, 1, "img/celulares/appleiPhoneSE.jpg"));
+listaProductos.push(new Productos(8, 'Celular Apple', 'iPhone 14 Pro Max', 837000, 1, "img/celulares/appleiPhone14ProMax.jpg"));
+listaProductos.push(new Productos(9, 'Celular Sony', 'Xperia 5 lv', 300000, 1, "img/celulares/SonyXperia5.jpg"));
+listaProductos.push(new Productos(10, 'Celular Xiaomi', 'Redmi Note 9', 154800, 1, "img/celulares/xiaomiRedmiNote9.jpg"));
+
+// Accesorios
+listaProductos.push(new Productos(11, 'Auriculares Samsung', 'Buds2 Pro graphite', 46999, 1, './img/accesorios/Auriculares-Buds2-Pro-graphite.jpg'));
+listaProductos.push(new Productos(12, 'Auriculares Motorola', 'Moto Buds 150 Wireless', 13499, 1, './img/accesorios/Auriculares-Motorola-Moto-Buds-150-Wireless.jpg'));
+listaProductos.push(new Productos(13, 'Auriculares Apple', 'AirPods con estuche MagSafe', 48999, 1, './img/accesorios/Auriculares-apple-airpods-pro.jpg'));
+listaProductos.push(new Productos(14, 'Auriculares Philip', '2000 Series TAT2205 negro', 10999, 1, './img/accesorios/Auriculares-Philip-200-Serie-TAT220-negro.jpg'));
+listaProductos.push(new Productos(15, 'Auriculares Apple', 'Earpods Lightning XR Xs Max', 11999, 1, './img/accesorios/Auricular-Apple-Earpods-Lightning-iPhone-XR-Xs-Max.jpg'));
 
 let carritoStorage = [];
 
@@ -33,6 +42,7 @@ let modalAlert = document.getElementById('modalAlert');
 let precioTotal = document.getElementById('precioTotal');
 let alerta = document.getElementById('sectionAlert');
 let comprarProductos = document.getElementById('comprarProductos');
+let titleProductos = document.getElementById('titleProductos');
 
 document.addEventListener('DOMContentLoaded', ()=> { 
     carritoStorage = JSON.parse(localStorage.getItem("carritoStorage")) || [];
@@ -78,7 +88,8 @@ function ImprimirPantallaConProductos() {
         // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
         listaProductos.forEach((producto)=>{
             const {id, nombre, descripcion, precio, imagen} = producto;
-            if (totalCambio > precio) {
+            if (totalCambio >= precio) {
+                titleProductos.style.visibility = 'visible';
                 bienvenida.remove();
                  let card = document.createElement('div');
                          card.innerHTML += `
@@ -94,17 +105,17 @@ function ImprimirPantallaConProductos() {
                                  </div>
                              </div>`;
                  contenedorProductos.append(card);
-             }
-         })
-         imprimirCarrito();
-     }else {
+            }
+        })
+        imprimirCarrito();
+    }else {
         let idCard = document.querySelectorAll(".card_prod");
         idCard.forEach(carta => {
         carta.parentElement.remove(); });
         // bucle para mostrar los productos mientras que el valor retornado alcance para comprar algunos de ellos
         listaProductos.forEach((producto)=>{
             const {id, nombre, descripcion, precio, imagen} = producto;
-            if (totalCambio > precio) {
+            if (totalCambio >= precio) {
                  let card = document.createElement('div');
                          card.innerHTML += `
                              <div class="card text-center shadow p-1 card_prod" data-aos="fade-up-left">
@@ -118,9 +129,9 @@ function ImprimirPantallaConProductos() {
                                      <button onclick="agregarAlCarrito(${id})" class="btn btn-primary rounded carrito"><img src="./img/carrito-de-compras.png" class="img-carrito" alt="carrito"></button>
                                  </div>
                              </div>`;
-                 contenedorProductos.append(card);
-             }
-         })
+                contenedorProductos.append(card);
+            }
+        })
         imprimirCarrito();
     }
 }
@@ -275,6 +286,7 @@ comprarProductos.addEventListener('click', () => {
     imprimirCarrito();
 })
 
+// Efecto maquina de escribir en la Bienvenida
 const typed = new Typed('.typed', {
 
     stringsElement: '#cadenas-texto', // ID del elemento que contiene cadenas de texto a mostrar.

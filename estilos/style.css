@@ -33,6 +33,10 @@ option {
     object-fit: contain;
 }
 
+#titleProductos{
+    visibility: hidden;
+}
+
 #bienvenida{
     border: 3px rgb(120, 20, 120) solid;
     border-radius: 20px;
@@ -98,7 +102,7 @@ option {
 
 .img-redes{
     width: 2.2em;
-    margin: 0 10px;
+    margin: 0 1em;
 }
 
 footer a {
@@ -108,5 +112,6 @@ footer a {
 .bienvenida{
     height: 1.3em;
     font-weight: bold;
-    color: rgb(120, 20, 120);
+    color: darkmagenta;
+    text-shadow: 2px 2px 12px #555;
 }
