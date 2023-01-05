@@ -104,3 +104,9 @@ option {
 footer a {
     text-decoration: none;
 }
+
+.bienvenida{
+    height: 1.3em;
+    font-weight: bold;
+    color: rgb(120, 20, 120);
+}
