@@ -6,7 +6,7 @@ body {
     background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 }
 .container{
-    min-height: 80vh;
+    min-height: 82vh;
 }
 
 .img_prod {
@@ -38,7 +38,7 @@ option {
 }
 
 #bienvenida{
-    border: 3px rgb(120, 20, 120) solid;
+    border: 3px #b8860b solid;
     border-radius: 20px;
 	overflow: hidden;
     box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
@@ -66,8 +66,9 @@ option {
 }
 
 .card_prod {
-    border: 4px solid rgb(120, 20, 120);
+    border: 4px solid #b8860b;
     border-radius: 10px;
+    min-height: 401.75px;
 
     -webkit-animation-name: zoomIn;
     animation-name: zoomIn;
@@ -112,6 +113,6 @@ footer a {
 .bienvenida{
     height: 1.3em;
     font-weight: bold;
-    color: darkmagenta;
+    color: #b8860b;
     text-shadow: 2px 2px 12px #555;
 }
